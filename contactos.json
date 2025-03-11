@@ -1,13 +1,15 @@
 {
-    "contactos" : [
-        {"nombre" : "Antonio",
-         "telefono" : 123456789,
-         "militar" : true,
-         "mail" : "antonio@mail.com" },
+    "Alberto": {
+         "telefono" : "123456789",
+         "email" : "alberto@mail.com"},
 
-        {"nombre" : "fulanito",
-         "telefono" : 600123456,
-         "militar" : false,
-         "mail" : "fulanito@mail.com"}
-                ]
+    "Antonio": {
+        "telefono" : "600123456",
+        "email" : "antonio@email.com"},
+
+    "Javier": {
+            "telefono" : "689654234",
+            "email" : "javier@mail.com"}
+
+    
 }

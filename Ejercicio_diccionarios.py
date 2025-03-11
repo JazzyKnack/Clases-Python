@@ -37,7 +37,7 @@ class Agenda:
     def mostrar_agenda(self):
         if self.phonebook:
             for nombre, telefono in self.phonebook.items():
-                print(f"Nombre: {nombre}, Teléfono: {telefono}")
+                print(f"Nombre: {nombre} / Teléfono: {telefono}")
         else:
             print("La agenda está vacía.")
 
