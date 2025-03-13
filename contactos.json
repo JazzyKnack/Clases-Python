@@ -1,15 +1,14 @@
 {
     "Alberto": {
-         "telefono" : "123456789",
-         "email" : "alberto@mail.com"},
-
+        "telefono": "123456789",
+        "email": "alberto@mail.com"
+    },
     "Antonio": {
-        "telefono" : "600123456",
-        "email" : "antonio@email.com"},
-
+        "telefono": "600123456",
+        "email": "antonio@email.com"
+    },
     "Javier": {
-            "telefono" : "689654234",
-            "email" : "javier@mail.com"}
-
-    
+        "telefono": "689654234",
+        "email": "javier@mail.com"
+    }
 }

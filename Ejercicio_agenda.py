@@ -1,5 +1,6 @@
 import json
 import os
+import sys
 
 class Agenda:
     
@@ -41,6 +42,7 @@ class Agenda:
     def guardar_agenda(self):
         with open(self.archivo, "w") as f:
             json.dump(self.contactos, f, indent = 4)
+            print("Agenda guardada con éxito")
     
     def mostrar_agenda(self):
         if self.contactos:   # Si se pone is True o == True sale que la agenda está vacía.
@@ -51,12 +53,38 @@ class Agenda:
         else:
             print("La agenda está vacía")
 
-def menu():
-    pass
+def menu_agenda():
+    while True:
+        print("\n********************************************")
+        print("* Bienvenido a nuestra agenda de contactos *")
+        print("********************************************")
+        print("\nSeleccione una opción:")
+        print("1. Introducir nuevo contacto")
+        print("2. Borrar un contacto")
+        print("3. Buscar un contacto")
+        print("4. Mostrar toda la agenda")
+        print("5. Salir")
+        opcion = int(input("Selecciona una opción: "))
 
-if __name__ == "__main__":
-    menu()
+        if opcion == 1:
+            agenda_test.nuevo_contacto()
+        elif opcion == 2:
+            agenda_test.borrar_contacto()
+        elif opcion == 3:
+            agenda_test.buscar_contacto()
+        elif opcion == 4:
+            agenda_test.mostrar_agenda()
+        elif opcion == 5:
+            agenda_test.guardar_agenda()   
+            print("Saliendo de la agenda")
+            sys.exit()  
+        else:
+            print("Opción no válida. Por favor, selecciona una opción del 1 al 5.")
 
 
 agenda_test = Agenda()
-agenda_test.mostrar_agenda()
+menu_agenda()
+
+if __name__ == "__main__":
+    menu_agenda()
+
