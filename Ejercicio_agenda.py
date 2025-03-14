@@ -9,10 +9,19 @@ class Agenda:
         self.contactos =  self.cargar_contactos()
 
     def cargar_contactos(self):
-        if os.path.exists(self.archivo):  # método de os para saber si esxiste el archivo
-            with open(self.archivo, "r") as f:   # abrir el archivo
-                return json.load(f)              # y lo carga
-        return {}
+        try:
+            if os.path.exists(self.archivo):  # método de os para saber si esxiste el archivo
+                with open(self.archivo, "r") as f:   # abrir el archivo
+                    return json.load(f)              # y lo carga
+            return {}
+        except json.JSONDecodeError:
+            print("Error: El archivo JSON está coprrupto.") 
+            return{} 
+        except FileNotFoundError: 
+            print("Archivo no encontrado, creando uno nuevo")
+            return{}
+        except Exception as e:
+            print(f"Error al cargar contacto {e}")
 
     def nuevo_contacto(self):
         nombre = str.title(input("Introduzca su nombre: "))
@@ -40,9 +49,14 @@ class Agenda:
             print(f"Contacto {nombre} no encontrado.")
 
     def guardar_agenda(self):
-        with open(self.archivo, "w") as f:
-            json.dump(self.contactos, f, indent = 4)
-            print("Agenda guardada con éxito")
+        try:
+            with open(self.archivo, "w") as f:
+                json.dump(self.contactos, f, indent = 4)
+                print("Agenda guardada con éxito")
+        except PermissionError:
+            print("Error. No hay permisos para excribir en el archivo")
+        except Exception as e:
+            print(f"Error al guardar la agenda {e}")
     
     def mostrar_agenda(self):
         if self.contactos:   # Si se pone is True o == True sale que la agenda está vacía.
@@ -86,5 +100,8 @@ agenda_test = Agenda()
 menu_agenda()
 
 if __name__ == "__main__":
-    menu_agenda()
+    try:
+        menu_agenda()
+    except Exception as e:
+        print(f"Error en la ejecución del programa: {e}")
 
