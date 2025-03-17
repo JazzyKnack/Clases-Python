@@ -16,10 +16,10 @@ finally:
 try:
     print(10/2) # Esto no generará una excepción, por lo que el bloque `except` no se ejecutará
 except Exception:
-    print("Ha ocurrido un error")
+    print("Ha ocurrido un error") # Esto no se imprimirá
 
 finally:
-    print("Este bloque se ejecutará siempre") 
+    print("Este bloque se ejecutará siempre") # Esto se imprimirá
 
 # Salida:
 # 5.0
@@ -39,6 +39,6 @@ def calculadora():
         print(f"Ha ocurrido un error: {e}") # Esto imprimirá el mensaje de error específico
 
     finally:
-        calculadora()
+        calculadora() # Esto llamará a la función `calculadora` de nuevo, para que el usuario pueda intentar de nuevo
 
-calculadora()
+calculadora() # Esto llamará a la función `calculadora` por primera vez
