@@ -1,92 +1,90 @@
-import json
-import os
-import sys
-import re
+import json # Importamos el módulo `json`
+import os # Importamos el módulo `os`
+import sys # Importamos el módulo `sys`
+import re # Importamos el módulo `re` para trabajar con expresiones regulares
 
-class Agenda:
+class Agenda: # Definimos la clase `Agenda`
     
-    def __init__(self, archivo="contactos.json"):
-        self.archivo = archivo
-        self.contactos = self.cargar_contactos()
+    def __init__(self, archivo="contactos.json"): # Definimos el método `__init__` con un argumento opcional `archivo`
+        self.archivo = archivo # Asignamos el argumento `archivo` a la variable de instancia `archivo`
+        self.contactos = self.cargar_contactos() # Asignamos el resultado de la función `cargar_contactos` a la variable de instancia `contactos`
 
-    def cargar_contactos(self):
-        if os.path.exists(self.archivo):
-            with open(self.archivo, "r") as f:
-                return json.load(f)
-        return {}
+    def cargar_contactos(self): # Definimos el método `cargar_contactos`
+        if os.path.exists(self.archivo): # Verificamos si el archivo existe
+            with open(self.archivo, "r") as f: # Abrimos el archivo en modo lectura
+                return json.load(f) # Cargamos los contactos desde el archivo
+        return {} # Si el archivo no existe, devolvemos un diccionario vacío
 
-    def validar_email(self, email):
-        # Patrón básico para validar email
-        patron = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-        return re.match(patron, email) is not None
+    def validar_email(self, email): # Definimos el método `validar_email` con un argumento `email`   
+        patron = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$' # Definimos un patrón para validar el email
+        return re.match(patron, email) is not None # Verificamos si el email coincide con el patrón
     
-    def validar_telefono(self, telefono):
-        # Verifica que sea un número y tenga entre 9 y 15 dígitos
-        return telefono.isdigit() and 9 <= len(telefono) <= 15
+    def validar_telefono(self, telefono): # Definimos el método `validar_telefono` con un argumento `telefono`
+        return telefono.isdigit() and 9 <= len(telefono) <= 15 # Verificamos si el teléfono es un número y tiene entre 9 y 15 dígitos   
     
-    def nuevo_contacto(self):
-        nombre = str.title(input("Introduzca su nombre: "))
+    def nuevo_contacto(self): # Definimos el método `nuevo_contacto`
+        nombre = str.title(input("Introduzca su nombre: ")) # Solicitamos al usuario que introduzca un nombre
         
         # Validación de teléfono
-        while True:
-            telefono = input("Introduzca su número de teléfono: ")
-            if self.validar_telefono(telefono):
-                break
-            print("Número de teléfono inválido. Debe contener solo dígitos y tener entre 9 y 15 caracteres.")
+        while True: # Iniciamos un bucle infinito
+            telefono = input("Introduzca su número de teléfono: ") # Solicitamos al usuario que introduzca un número de teléfono
+            if self.validar_telefono(telefono): # Verificamos si el teléfono es válido
+                break # Salimos del bucle si el teléfono es válido
+            print("Número de teléfono inválido. Debe contener solo dígitos y tener entre 9 y 15 caracteres.") # Mensaje de error
         
         # Validación de email
-        while True:
-            email = input("Introduzca su email: ")
-            if self.validar_email(email):
-                break
-            print("Email inválido. Por favor, introduzca un email válido.")
+        while True: # Iniciamos un bucle infinito
+            email = input("Introduzca su email: ") # Solicitamos al usuario que introduzca un email
+            if self.validar_email(email): # Verificamos si el email es válido
+                break # Salimos del bucle si el email es válido
+            print("Email inválido. Por favor, introduzca un email válido.") # Mensaje de error
         
         # Campo adicional opcional
-        direccion = input("Introduzca su dirección (opcional): ")
+        direccion = input("Introduzca su dirección (opcional): ") # Solicitamos al usuario que introduzca una dirección
         
-        self.contactos[nombre] = {
+        self.contactos[nombre] = { # Añadimos el contacto al diccionario `contactos`
             "telefono": telefono,
             "email": email,
             "direccion": direccion if direccion else "No especificada"
         }
-        print(f"Se ha agregado a {nombre} con el número {telefono} y con el email {email}")
+        print(f"Se ha agregado a {nombre} con el número {telefono} y con el email {email}") # Mensaje de éxito
     
-    def buscar_contacto(self):
-        print("\nBuscar contacto por:")
-        print("1. Nombre")
-        print("2. Teléfono")
-        print("3. Email")
-        opcion = input("Seleccione una opción (1-3): ")
+    def buscar_contacto(self): # Definimos el método `buscar_contacto`
+        print("\nBuscar contacto por:") # Imprimimos las opciones de búsqueda
+        print("1. Nombre") # Opción 1: Nombre
+        print("2. Teléfono") # Opción 2: Teléfono
+        print("3. Email") # Opción 3: Email
+        opcion = input("Seleccione una opción (1-3): ") # Solicitamos al usuario que seleccione una opción
         
-        encontrados = []
+        encontrados = [] # Creamos una lista para almacenar los contactos encontrados
         
-        if opcion == "1":
-            nombre = str.title(input("Introduce el nombre del contacto: "))
-            if nombre in self.contactos:
-                encontrados.append((nombre, self.contactos[nombre]))
-        elif opcion == "2":
-            telefono = input("Introduce el número de teléfono: ")
-            for nombre, info in self.contactos.items():
-                if info["telefono"] == telefono:
-                    encontrados.append((nombre, info))
-        elif opcion == "3":
-            email = input("Introduce el email: ")
-            for nombre, info in self.contactos.items():
-                if info["email"].lower() == email.lower():
-                    encontrados.append((nombre, info))
-        else:
-            print("Opción no válida.")
-            return
+        if opcion == "1": # Si la opción es 1 (Nombre)
+            nombre = str.title(input("Introduce el nombre del contacto: ")) # Solicitamos al usuario que introduzca un nombre
+            if nombre in self.contactos: # Si el nombre está en el diccionario `contactos`
+                encontrados.append((nombre, self.contactos[nombre])) # Añadimos el contacto a la lista de encontrados
+        elif opcion == "2": # Si la opción es 2 (Teléfono)
+            telefono = input("Introduce el número de teléfono: ") # Solicitamos al usuario que introduzca un número de teléfono
+            for nombre, info in self.contactos.items(): # Iteramos sobre los contactos en el diccionario `contactos`
+                if info["telefono"] == telefono: # Si el teléfono coincide con el teléfono del contacto
+                    encontrados.append((nombre, info)) # Añadimos el contacto a la lista de encontrados
+        elif opcion == "3": # Si la opción es 3 (Email)
+            email = input("Introduce el email: ") # Solicitamos al usuario que introduzca un email
+            for nombre, info in self.contactos.items(): # Iteramos sobre los contactos en el diccionario `contactos`   
+                if info["email"].lower() == email.lower(): # Si el email coincide con el email del contacto
+                    encontrados.append((nombre, info)) # Añadimos el contacto a la lista de encontrados
+        else: # Si la opción no es válida
+            print("Opción no válida.") # Mensaje de error
+            return # Salimos del método
         
-        if encontrados:
-            print("\nContactos encontrados:")
-            for nombre, info in encontrados:
-                print(f"\nNombre: {nombre}")
-                print(f"Teléfono: {info['telefono']}")
-                print(f"Email: {info['email']}")
-                print(f"Dirección: {info['direccion']}")
-        else:
-            print("No se encontraron contactos con ese criterio.")
+        if encontrados: # Si se encontraron contactos
+            print("\nContactos encontrados:") # Imprimimos los contactos encontrados
+            for nombre, info in encontrados: # Iteramos sobre los contactos encontrados
+                print(f"\nNombre: {nombre}") # Imprimimos el nombre del contacto
+                print(f"Teléfono: {info['telefono']}") # Imprimimos el teléfono del contacto
+                print(f"Email: {info['email']}") # Imprimimos el email del contacto
+                print(f"Dirección: {info['direccion']}") # Imprimimos la dirección del contacto
+        else: # Si no se encontraron contactos
+            print("No se encontraron contactos con ese criterio.") # Mensaje de error
 
     def modificar_contacto(self):
         nombre = str.title(input("Introduce el nombre del contacto a modificar: "))
