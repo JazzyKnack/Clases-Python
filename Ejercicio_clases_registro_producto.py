@@ -2,31 +2,44 @@
 # Crea una clase Producto con atributos para nombre, precio y cantidad en stock.
 # Añade un método que calcule el valor total del inventario (precio × cantidad).
 
-class Producto:
-
-    inventario = {}
+class Producto: # Se crea la clase Producto
     
-    def __init__(self, nombre, precio, cantidad):
-        self.nombre = nombre
-        self.precio = precio
-        self.cantidad = cantidad
-        Producto.inventario[nombre] = self
+    def __init__(self): # Constructor para iniciar la clase
+        self.inventario = {} # Diccionario vacío
+        
+    def añadir_productos(self): # Método para añadir productos
+        insert = True
+        while insert is True:
+            self.nombre = input("Introduzca el nombre del producto: ") # Input para introducir el nombre del producto
+            self.precio = float(input("Introduzca el precio del producto: ")) # Input para introducir el precio del producto
+            self.cantidad = int(input("Introduzca la cantidad del producto: ")) # Input para introducir la cantidad del producto
+            atributos_inventario = {"Precio":self.precio, "Cantidad": self.cantidad}
+            self.inventario[self.nombre] = atributos_inventario # Agrega el elemento al diccionario
+            print() # Separación
+            if (input("¿Desea registrar otro producto? S/N: ")).lower() == "n": # Preguntar si se quieren añadir más productos
+                insert = False
 
-    def agregar_producto(self):
-        nomb = input("Introduce el nombre del artículo: ")
-        prec = float(input("Introduzca el precio del artículo: "))
-        cant = int(input("Introduzca la cantidad del artículo: "))
-        Producto.inventario[nomb] = Producto(nomb, prec, cant)
+    def mostrar_inventario(self): # Método para mostrar el inventario
+        print() # Separación
+        for self.nombre, valor in self.inventario.items(): # Bucle para recorrer el diccionario
+            print("----") # Separación
+            self.precio = valor["Precio"]
+            self.cantidad = valor["Cantidad"]
+            print("Nombre: {} - Precio: {} | Cantidad: {}".format(self.nombre, self.precio, self.cantidad))
 
     def calculo_total(self):
-        return self.precio * self.cantidad
+        total = 0
+        for self.nombre, self.cantidad in self.inventario.items():
+            total += self.inventario[self.precio] * self.cantidad
+            print(total)
 
-    def mostrar_inventario(self):
-        for nombre, precio, cantidad in Producto.inventario.items():
-            print(f"Nombre: {nombre}, Precio: {precio}, Cantidad: {cantidad}, Total: {producto.calculo_total()}")
+
+
+    
 
 # Ejemplo de uso
-producto1 = Producto("Manzana", 0.5, 100)
-producto2 = Producto("Naranja", 0.75, 80)
-producto1.agregar_producto()
+producto1 = Producto()
+producto1.añadir_productos()
 producto1.mostrar_inventario()
+producto1.calculo_total()
+
