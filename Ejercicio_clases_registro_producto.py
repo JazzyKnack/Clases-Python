@@ -9,7 +9,7 @@ class Producto: # Se crea la clase Producto
         
     def añadir_productos(self): # Método para añadir productos
         insert = True
-        while insert is True:
+        while insert is True: # Bucle while para ir añadiendo productos
             self.nombre = input("Introduzca el nombre del producto: ") # Input para introducir el nombre del producto
             self.precio = float(input("Introduzca el precio del producto: ")) # Input para introducir el precio del producto
             self.cantidad = int(input("Introduzca la cantidad del producto: ")) # Input para introducir la cantidad del producto
@@ -20,22 +20,19 @@ class Producto: # Se crea la clase Producto
                 insert = False
 
     def mostrar_inventario(self): # Método para mostrar el inventario
-        print() # Separación
-        for self.nombre, valor in self.inventario.items(): # Bucle para recorrer el diccionario
-            print("----") # Separación
-            self.precio = valor["Precio"]
-            self.cantidad = valor["Cantidad"]
-            print("Nombre: {} - Precio: {} | Cantidad: {}".format(self.nombre, self.precio, self.cantidad))
-
-    def calculo_total(self):
-        total = 0
-        for self.nombre, self.cantidad in self.inventario.items():
-            total += self.inventario[self.precio] * self.cantidad
-            print(total)
+        print("\nInventario:") # Título
+        for nombre, datos in self.inventario.items(): # Bucle for para recorrer el inventario
+            print(f"\nNombre: {nombre} | Precio: {datos['Precio']} | Cantidad: {datos['Cantidad']}") # Imprimir el inventario
 
 
+    def calculo_total(self): # Método para calcular el total del inventario
+        total = 0 # Variable total comienza en 0
+        for nombre, datos in self.inventario.items(): # Bucle for para calcular el valor total de los productos del inventario
+            precio = datos["Precio"]
+            cantidad = datos["Cantidad"]
+            total += precio * cantidad
+        print(f"\nEl valor total del inventario es {total}") # Imprimir el valor total del inventario
 
-    
 
 # Ejemplo de uso
 producto1 = Producto()
