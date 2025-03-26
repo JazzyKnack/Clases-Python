@@ -17,8 +17,10 @@ class Ordenador: # Clase Ordenador
                     lista[j + 1] = temp # Intercambia los elementos
         return self.lista # Devuelve la lista ordenada
 
-ordenador1 = Ordenador() # Instancia de la clase Ordenador
+ordenador1 = Ordenador() # Creamos un objeto de la clase Ordenador
 lista_ordenada = ordenador1.ordenar_lista([7, 4, 9, 23, 3, 7, 1, 34]) # Llama al método ordenar_lista con una lista desordenada
 print(lista_ordenada) # Imprime la lista ordenada
 
+# Resultado:
 
+# [1, 3, 4, 7, 7, 9, 23, 34]

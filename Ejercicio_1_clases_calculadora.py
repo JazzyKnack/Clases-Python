@@ -26,7 +26,7 @@ class Calculadora: # Clase Calculadora con métodos para sumar, restar, multipli
 
 def menu(): # Función para mostrar el menú de la calculadora.
         
-    while True: # Bucle infinito para mostrar el menú de la calculadora.
+    while True: # Bucle while para mostrar el menú de la calculadora.
         print("\n------------------------------------")
         print("- Calculadora de operaciones básicas -") # Menú de la calculadora.
         print("--------------------------------------")

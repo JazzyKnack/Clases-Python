@@ -16,3 +16,5 @@ if __name__ == "__main__": # Ejemplo de uso de la clase Texto.
     texto = Texto("Este es un ejemplo de la función contador de palabras.") # Se crea un objeto de la clase Texto con un texto.
     print(f"El texto contiene {texto.contar_palabras()} palabras.") # Se imprime el número de palabras del texto.
 
+# Resultado:
+# El texto contiene 10 palabras.

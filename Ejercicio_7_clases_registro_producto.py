@@ -28,15 +28,16 @@ class Producto: # Se crea la clase Producto
     def calculo_total(self): # Método para calcular el total del inventario
         total = 0 # Variable total comienza en 0
         for nombre, datos in self.inventario.items(): # Bucle for para calcular el valor total de los productos del inventario
-            precio = datos["Precio"]
+            precio = datos["Precio"] 
             cantidad = datos["Cantidad"]
             total += precio * cantidad
         print(f"\nEl valor total del inventario es {total}") # Imprimir el valor total del inventario
 
 
 # Ejemplo de uso
-producto1 = Producto()
-producto1.añadir_productos()
-producto1.mostrar_inventario()
-producto1.calculo_total()
+
+producto1 = Producto() # Creamos un objeto de la clase Producto
+producto1.añadir_productos() # Llamamos al método añadir_productos
+producto1.mostrar_inventario() # Llamamos al método mostrar_inventario
+producto1.calculo_total() # LLamamos al método calculo_total
 
