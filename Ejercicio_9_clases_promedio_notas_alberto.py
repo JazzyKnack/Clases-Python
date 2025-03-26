@@ -3,7 +3,7 @@
 # Implementa un método que calcule el promedio y otro que devuelva la nota más alta. Añade manejo de 
 # excepciones para evitar notas inferiores a 0 o superiores a 10.
 
-class Notas(): # Se crea la clase Notas con métodos para agregar notas, calcular promedio y devolver la nota más alta
+class Notas: # Se crea la clase Notas con métodos para agregar notas, calcular promedio y devolver la nota más alta
 
     def __init__(self): # Constructor que inicializa las notas
         self.notas = [] # Atributo notas
