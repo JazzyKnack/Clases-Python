@@ -5,7 +5,7 @@
 
 import tkinter as tk
 from tkinter import messagebox
-from Ejercicio_clases_calculadora import Calculadora
+from Ejercicio_1_clases_calculadora_alberto import Calculadora
 
 class CalculadoraGUI: # Clase Calculadora con métodos para sumar, restar, multiplicar y dividir dos números.
     
