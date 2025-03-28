@@ -34,6 +34,12 @@ class Tarea: # Creamos la clase Tarea
         self.delete = input("Introduzca la tarea que quiere borrar: ")
         self.tareas.pop(self.delete)
 
+    def marcar_completa(self):
+        self.completar = input("Introduzca la tarea comletada: ")
+        self.tareas[self.completar]["Estado"] = "Tarea completada"
 
-tarea = Tarea()
+    def listar_tareas(self):
+        pass
+
+
 
