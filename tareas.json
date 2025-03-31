@@ -1,0 +1,14 @@
+{
+    "correo": {
+        "Descripci\u00f3n": "revisar correos",
+        "Estado": "Tarea completada"
+    },
+    "backups": {
+        "Descripci\u00f3n": "comprobar los backups",
+        "Estado": "Tarea completada"
+    },
+    "incidencias": {
+        "Descripci\u00f3n": "Revisar incidencias entrantes",
+        "Estado": "Tarea completada"
+    }
+}
